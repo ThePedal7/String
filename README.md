@@ -128,7 +128,7 @@ public class Program {
 
        // takes a start index and returns a new obj
        // with a copy of the data starting from that index
-       using UnmanagedString str2 = str.Substring(5);
+       using UnmanagedString str2 = str.SubString(5);
 
        // takes a start index and a length
        // returns a new obj with a copy of the data
