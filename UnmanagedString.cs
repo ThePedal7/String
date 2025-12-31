@@ -27,7 +27,6 @@ public sealed unsafe class UnmanagedString : IDisposable{
     private UnmanagedString(string str) : this(str.Length + 1) {
        _length = str.Length;
         fixed (char* ptr = str) {
-            
             NativeMemory.Copy(ptr, _ptr, (UIntPtr)_length * sizeof(char));
             _ptr[_length] = '\0';
         }
@@ -39,8 +38,7 @@ public sealed unsafe class UnmanagedString : IDisposable{
         _ptr[_length] = '\0';
     }
     //Move Constructor
-    public UnmanagedString(ref UnmanagedString source)  {
-        
+    public UnmanagedString(ref UnmanagedString source)  {    
         this._ptr = source.Ptr;
         _length = source.Length;
         _capacity = source.Capacity;
@@ -68,10 +66,8 @@ public sealed unsafe class UnmanagedString : IDisposable{
     }
 
     public static void Clean() {
-
         foreach (var instance in _activeInstances.ToArray()) {
-            instance.Dispose();
-            
+            instance.Dispose();          
         }
         
     }
@@ -91,8 +87,7 @@ public sealed unsafe class UnmanagedString : IDisposable{
         }
     }
 
-    public UnmanagedString SubString(int startIndex) {
-        
+    public UnmanagedString SubString(int startIndex) {        
         int newLength = _length - startIndex;
         UnmanagedString str = new UnmanagedString(newLength + 1);
         str._length = newLength;
