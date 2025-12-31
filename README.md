@@ -1,2 +1,2 @@
-# String
-I have made a augmented string class in C#. It allocates unmanaged Heap memory and it is null terminated. Currently it still uses Unicode encoding. 
+# UnmanagedString
+I am making a class that can bridge the gap between managed C# strings and make them more acceptable to unmanaged code.
