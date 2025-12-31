@@ -65,6 +65,10 @@ public class Program {
       // Clean is what UnmanagedStringScope calls
       UnmanagedString.Clean();
    }
+
+}
+```
+
 // Copy Construction
 
 ```cs
@@ -78,7 +82,6 @@ public class Program {
 
    
    }
-}
 ```
 
 // Move Construction
