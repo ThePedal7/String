@@ -1,14 +1,22 @@
 # UnmanagedString
 
-.The UnmanagedString obj is null terminated
+What UnmanagedString is
 
-.The Obj itself is a managed class
-
+. The obj itself is a managed class
+. The UnmanagedString is null terminated
 . It allocates unmanaged heap to a char*
+. Managed strings are mem copied into char*
 
-. managed strings are mem copied into char*
 
+Why would you use this?
 
+. You want a mutable string other than StringBuilder
+. You want more control of the data ex: lifetimes
+. You want null terminated strings
+
+What will UnmanagedString eventually do?
+
+. work as a bridge between unmanaged code and managed code for string operations
 
 
 // Cleanup
