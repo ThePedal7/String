@@ -1,4 +1,13 @@
 # UnmanagedString
+
+.The UnmanagedString obj is null terminated
+.The Obj itself is a managed class
+. It allocates unmanaged heap to a char*
+. managed strings are mem copied into char*
+
+
+
+
 // Cleanup
 
 ```cs
