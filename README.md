@@ -54,17 +54,6 @@ public class Program {
        UnmanagedString str = "Hello, World";
        UnmanagedString str2 = "Hello, World";
        UnmanagedString str3 = "Hello, World";
-   }
-}
-```
-
-```cs
-public class Program {
-   public static void Main(string[] args) {
-      using var scope = new UnmanagedStringScope();
-       UnmanagedString str = "Hello, World";
-       UnmanagedString str2 = "Hello, World";
-       UnmanagedString str3 = "Hello, World";
        UnmanagedString[] arr = ["H","Why", "E"]; 
    }
 }
@@ -131,7 +120,6 @@ public class Program {
 ```
 
 // SubString Method 
-
 
 ```cs
 public class Program {
