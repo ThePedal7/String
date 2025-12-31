@@ -77,7 +77,6 @@ public class Program {
 public class Program {
    public static void Main(string[] args) {
       
-
       UnmanagedString str = "Hello, World";
       UnmanagedString str2 = "Hello, World";
       UnmanagedString str3 = "Hello, World";
