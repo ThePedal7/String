@@ -27,8 +27,6 @@ public class Program {
 public class Program {
    public static void Main(string[] args) {
      using UnmanagedString str = "Hello, World";
-
-      
    }
 }
 ```
@@ -41,8 +39,6 @@ public class Program {
       UnmanagedString str = "Hello, World";
       UnmanagedString str2 = "Hello, World";
       UnmanagedString str3 = "Hello, World";
-
-   
    }
 }
 ```
@@ -55,9 +51,7 @@ public class Program {
       UnmanagedString str = "Hello, World";
       UnmanagedString str2 = "Hello, World";
       UnmanagedString str3 = "Hello, World";
-      UnmanagedString[] arr = ["H","Why", "E"];
-
-   
+      UnmanagedString[] arr = ["H","Why", "E"]; 
    }
 }
 ```
@@ -89,10 +83,7 @@ public class Program {
       using var scope = new UnmanagedStringScope();
 
       UnmanagedString str = "Hello, World";
-      UnmanagedString str2 = new(str);
-     
-
-   
+      UnmanagedString str2 = new(str); 
    }
 ```
 
@@ -109,8 +100,6 @@ public class Program {
       UnmanagedString str2 = new( ref str);
       
       Console.WriteLine(str); // output: null 
-
-   
    }
 }
 ```
@@ -127,9 +116,7 @@ public class Program {
 
        str.Reverse(); // Operation mutates the data
 
-       Console.WriteLine(str); // output: dlroW ,olleH
-
-     
+       Console.WriteLine(str); // output: dlroW ,olleH  
    }
 }
 ```
@@ -151,11 +138,7 @@ public class Program {
        // returns a new obj with a copy of the data
        // starting at the index and ending when reaching
        // the specified length
-       using UnmanagedString str3 = str.SubString(5,2);
-
-       
-
-     
+       using UnmanagedString str3 = str.SubString(5,2);  
    }
 }
 ```
