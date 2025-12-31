@@ -1,21 +1,27 @@
 using System.Runtime.InteropServices;
 
+namespace Console;
+
 public sealed unsafe class UnmanagedString : IDisposable{
     private char* _ptr;
     private int _capacity;
     private int _byteSize;
     private int _length;
+    private static readonly List<UnmanagedString> _activeInstances = new List<UnmanagedString>();
     public char* Ptr => _ptr;
     public int Length => _length;
     public int Capacity => _capacity;
     public int ByteSize => _byteSize;
+    public static List<UnmanagedString> ActiveInstances => _activeInstances;
     //Buffer Allocation Constructor
     private UnmanagedString(int capacity) {
+        
         _capacity = capacity;
         _byteSize = _capacity * sizeof(char);
         _ptr = (char*)NativeMemory.AllocZeroed((UIntPtr)_byteSize);
         
         _length = 0;
+        _activeInstances.Add(this);
     }
     // Adds a managed string into Buffer
     private UnmanagedString(string str) : this(str.Length + 1) {
@@ -44,7 +50,7 @@ public sealed unsafe class UnmanagedString : IDisposable{
         source._length = 0;
         source._capacity = 0;
         source._byteSize = 0;
-
+        _activeInstances.Remove(source);
     }
     
 
@@ -56,8 +62,22 @@ public sealed unsafe class UnmanagedString : IDisposable{
         _byteSize = 0;
         _capacity = 0;
         _ptr = null;
+        if (_activeInstances.Contains(this)) {
+         _activeInstances.Remove(this);
+        }
     }
 
+    public static void Clean() {
+
+        foreach (var instance in _activeInstances.ToArray()) {
+            instance.Dispose();
+            
+        }
+        
+    }
+
+   
+    
     public void Reverse() {
         char* left = _ptr;
         char* right = _ptr + _length - 1;
@@ -96,7 +116,7 @@ public sealed unsafe class UnmanagedString : IDisposable{
    
    public static implicit operator string(UnmanagedString str) => str.ToString();
 
-   
+  
    
    public  char this[int index] {
        get =>  _ptr[index];
