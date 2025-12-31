@@ -14,12 +14,10 @@ public sealed unsafe class UnmanagedString : IDisposable{
     public int ByteSize => _byteSize;
     public static List<UnmanagedString> ActiveInstances => _activeInstances;
     //Buffer Allocation Constructor
-    private UnmanagedString(int capacity) {
-        
+    private UnmanagedString(int capacity) {       
         _capacity = capacity;
         _byteSize = _capacity * sizeof(char);
-        _ptr = (char*)NativeMemory.AllocZeroed((UIntPtr)_byteSize);
-        
+        _ptr = (char*)NativeMemory.AllocZeroed((UIntPtr)_byteSize);        
         _length = 0;
         _activeInstances.Add(this);
     }
