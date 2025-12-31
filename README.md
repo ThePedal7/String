@@ -1,6 +1,6 @@
 # UnmanagedString
 
-What UnmanagedString is
+// What UnmanagedString is
 
 . The obj itself is a managed class
 
@@ -13,7 +13,7 @@ What UnmanagedString is
 
 
 
-Why would you use this?
+// Why would you use this?
 
 . You want a mutable string other than StringBuilder
 
@@ -23,9 +23,9 @@ Why would you use this?
 
 
 
-What will UnmanagedString eventually do?
+// What will UnmanagedString eventually do?
 
-. work as a bridge between unmanaged code and managed code for string operations
+. Work as a bridge between unmanaged code and managed code for string operations
 
 
 // Cleanup
