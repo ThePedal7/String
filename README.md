@@ -11,11 +11,17 @@ What UnmanagedString is
 . Managed strings are mem copied into char*
 
 
+
+
 Why would you use this?
 
 . You want a mutable string other than StringBuilder
+
 . You want more control of the data ex: lifetimes
+
 . You want null terminated strings
+
+
 
 What will UnmanagedString eventually do?
 
