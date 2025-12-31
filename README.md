@@ -34,8 +34,7 @@
 public class Program {
    public static void Main(string[] args) {
       UnmanagedString str = "Hello, World";
-
-      str.Dispose();
+       str.Dispose();
    }
 }
 ```
@@ -107,10 +106,10 @@ public class Program {
       using var scope = new UnmanagedStringScope();      
        UnmanagedString str = "Hello, World";
 
-      // The unmanaged resource is now owned by str2
-      UnmanagedString str2 = new( ref str);
+       // The unmanaged resource is now owned by str2
+       UnmanagedString str2 = new( ref str);
       
-      Console.WriteLine(str); // output: null 
+       Console.WriteLine(str); // output: null 
    }
 }
 ```
@@ -122,11 +121,11 @@ public class Program {
    public static void Main(string[] args) {      
        using UnmanagedString str = "Hello, World";
        
-       Console.WriteLine(str); // output: Hello, World
+        Console.WriteLine(str); // output: Hello, World
 
-       str.Reverse(); // Operation mutates the data
+        str.Reverse(); // Operation mutates the data
 
-       Console.WriteLine(str); // output: dlroW ,olleH  
+        Console.WriteLine(str); // output: dlroW ,olleH  
    }
 }
 ```
