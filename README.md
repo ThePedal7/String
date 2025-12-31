@@ -60,3 +60,18 @@ public class Program {
    }
 }
 ```
+// Move Construction
+```cs
+public class Program {
+   public static void Main(string[] args) {
+      using var scope = new UnmanagedStringScope();
+      UnmanagedString str = "Hello, World";
+      // The unmanaged resource is now owned by str2
+      UnmanagedString str2 = new( ref str);
+      
+      Console.WriteLine(str); // output: null 
+
+   
+   }
+}
+```
