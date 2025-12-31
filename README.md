@@ -3,8 +3,11 @@
 What UnmanagedString is
 
 . The obj itself is a managed class
+
 . The UnmanagedString is null terminated
+
 . It allocates unmanaged heap to a char*
+
 . Managed strings are mem copied into char*
 
 
