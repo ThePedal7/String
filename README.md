@@ -52,10 +52,9 @@ public class Program {
 public class Program {
    public static void Main(string[] args) {
       using var scope = new UnmanagedStringScope();
-
-      UnmanagedString str = "Hello, World";
-      UnmanagedString str2 = "Hello, World";
-      UnmanagedString str3 = "Hello, World";
+       UnmanagedString str = "Hello, World";
+       UnmanagedString str2 = "Hello, World";
+       UnmanagedString str3 = "Hello, World";
    }
 }
 ```
@@ -64,19 +63,17 @@ public class Program {
 public class Program {
    public static void Main(string[] args) {
       using var scope = new UnmanagedStringScope();
-
-      UnmanagedString str = "Hello, World";
-      UnmanagedString str2 = "Hello, World";
-      UnmanagedString str3 = "Hello, World";
-      UnmanagedString[] arr = ["H","Why", "E"]; 
+       UnmanagedString str = "Hello, World";
+       UnmanagedString str2 = "Hello, World";
+       UnmanagedString str3 = "Hello, World";
+       UnmanagedString[] arr = ["H","Why", "E"]; 
    }
 }
 ```
 
 ```cs
 public class Program {
-   public static void Main(string[] args) {
-      
+   public static void Main(string[] args) {      
       UnmanagedString str = "Hello, World";
       UnmanagedString str2 = "Hello, World";
       UnmanagedString str3 = "Hello, World";
@@ -96,9 +93,8 @@ public class Program {
 public class Program {
    public static void Main(string[] args) {
       using var scope = new UnmanagedStringScope();
-
-      UnmanagedString str = "Hello, World";
-      UnmanagedString str2 = new(str); 
+       UnmanagedString str = "Hello, World";
+       UnmanagedString str2 = new(str); 
    }
 }
 ```
@@ -108,9 +104,8 @@ public class Program {
 ```cs
 public class Program {
    public static void Main(string[] args) {
-      using var scope = new UnmanagedStringScope();
-      
-      UnmanagedString str = "Hello, World";
+      using var scope = new UnmanagedStringScope();      
+       UnmanagedString str = "Hello, World";
 
       // The unmanaged resource is now owned by str2
       UnmanagedString str2 = new( ref str);
@@ -124,8 +119,7 @@ public class Program {
 
 ```cs
 public class Program {
-   public static void Main(string[] args) {
-      
+   public static void Main(string[] args) {      
        using UnmanagedString str = "Hello, World";
        
        Console.WriteLine(str); // output: Hello, World
@@ -142,8 +136,7 @@ public class Program {
 
 ```cs
 public class Program {
-   public static void Main(string[] args) {
-      
+   public static void Main(string[] args) {    
        using UnmanagedString str = "Hello, World";
 
        // takes a start index and returns a new obj
