@@ -34,9 +34,7 @@ public sealed unsafe class UnmanagedString : IDisposable{
     }
     //Move Constructor
     public UnmanagedString(ref UnmanagedString source)  {
-        if (this._ptr != null) {
-            NativeMemory.Free(this._ptr);
-        }
+        
         this._ptr = source.Ptr;
         _length = source.Length;
         _capacity = source.Capacity;
