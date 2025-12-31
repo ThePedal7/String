@@ -88,7 +88,6 @@ public class Program {
       // Clean is what UnmanagedStringScope calls
       UnmanagedString.Clean();
    }
-
 }
 ```
 
