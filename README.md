@@ -102,6 +102,7 @@ public class Program {
       UnmanagedString str = "Hello, World";
       UnmanagedString str2 = new(str); 
    }
+}
 ```
 
 // Move Construction
