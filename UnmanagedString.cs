@@ -1,8 +1,9 @@
+using System.Collections;
 using System.Runtime.InteropServices;
 
 namespace Console;
 
-public sealed unsafe class UnmanagedString : IDisposable{
+public sealed unsafe class UnmanagedString : IDisposable, IEnumerable<char> {
     private char* _ptr;
     private int _capacity;
     private int _byteSize;
@@ -13,11 +14,15 @@ public sealed unsafe class UnmanagedString : IDisposable{
     public int Capacity => _capacity;
     public int ByteSize => _byteSize;
     public static List<UnmanagedString> ActiveInstances => _activeInstances;
+
+    
     //Buffer Allocation Constructor
-    private UnmanagedString(int capacity) {       
+    private UnmanagedString(int capacity) {
+        
         _capacity = capacity;
         _byteSize = _capacity * sizeof(char);
-        _ptr = (char*)NativeMemory.AllocZeroed((UIntPtr)_byteSize);        
+        _ptr = (char*)NativeMemory.AllocZeroed((UIntPtr)_byteSize);
+        
         _length = 0;
         _activeInstances.Add(this);
     }
@@ -25,6 +30,7 @@ public sealed unsafe class UnmanagedString : IDisposable{
     private UnmanagedString(string str) : this(str.Length + 1) {
        _length = str.Length;
         fixed (char* ptr = str) {
+            
             NativeMemory.Copy(ptr, _ptr, (UIntPtr)_length * sizeof(char));
             _ptr[_length] = '\0';
         }
@@ -36,7 +42,8 @@ public sealed unsafe class UnmanagedString : IDisposable{
         _ptr[_length] = '\0';
     }
     //Move Constructor
-    public UnmanagedString(ref UnmanagedString source)  {    
+    public UnmanagedString(ref UnmanagedString source)  {
+        
         this._ptr = source.Ptr;
         _length = source.Length;
         _capacity = source.Capacity;
@@ -64,12 +71,24 @@ public sealed unsafe class UnmanagedString : IDisposable{
     }
 
     public static void Clean() {
+
         foreach (var instance in _activeInstances.ToArray()) {
-            instance.Dispose();          
+            instance.Dispose();
+            
         }
         
     }
 
+    public void Swap( UnmanagedString other) {
+        char* tmp = _ptr;
+        _ptr =  other.Ptr;
+        other._ptr = tmp;
+        
+        (other._length,  _length) = (_length, other.Length);
+        (other._byteSize,  _byteSize) = (_byteSize, other.ByteSize);
+        (other._capacity,  _capacity) = (_capacity, other.Capacity);
+
+    }
    
     
     public void Reverse() {
@@ -85,7 +104,8 @@ public sealed unsafe class UnmanagedString : IDisposable{
         }
     }
 
-    public UnmanagedString SubString(int startIndex) {        
+    public UnmanagedString SubString(int startIndex) {
+        
         int newLength = _length - startIndex;
         UnmanagedString str = new UnmanagedString(newLength + 1);
         str._length = newLength;
@@ -115,9 +135,18 @@ public sealed unsafe class UnmanagedString : IDisposable{
        get =>  _ptr[index];
        set => _ptr[index] = value;
    }
-    public override string ToString() {
+
+   public IEnumerator<char> GetEnumerator() {
+       return new UnmanagedStringEnumerator(_ptr, _length);
+   }
+
+   public override string ToString() {
         if(Ptr == null) return "null";
         
         return new string(Ptr);
+    }
+
+    IEnumerator IEnumerable.GetEnumerator() {
+        return GetEnumerator();
     }
 }
