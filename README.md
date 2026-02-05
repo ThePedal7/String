@@ -20,7 +20,7 @@
 
 // What will UnmanagedString eventually do?
 
-. Work as a bridge between unmanaged code and managed code for string operations
+. Be a hopefully nice packaged option for interop 
 
 
 // Cleanup
